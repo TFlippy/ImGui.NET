@@ -58,7 +58,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public bool Draw(string label)
+        public bool Draw(ReadOnlySpan<char> label)
         {
             byte* native_label;
             int label_byteCount = 0;
@@ -86,7 +86,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public bool Draw(string label, float width)
+        public bool Draw(ReadOnlySpan<char> label, float width)
         {
             byte* native_label;
             int label_byteCount = 0;
@@ -118,7 +118,7 @@ namespace ImGuiNET
             byte ret = ImGuiNative.ImGuiTextFilter_IsActive((ImGuiTextFilter*)(NativePtr));
             return ret != 0;
         }
-        public bool PassFilter(string text)
+        public bool PassFilter(ReadOnlySpan<char> text)
         {
             byte* native_text;
             int text_byteCount = 0;

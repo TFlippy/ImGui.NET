@@ -18,7 +18,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiTextBuffer* (ImGuiTextBufferPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiTextBufferPtr(IntPtr nativePtr) => new ImGuiTextBufferPtr(nativePtr);
         public ImVector<byte> Buf => new ImVector<byte>(NativePtr->Buf);
-        public void append(string str)
+        public void append(ReadOnlySpan<char> str)
         {
             byte* native_str;
             int str_byteCount = 0;
@@ -45,7 +45,7 @@ namespace ImGuiNET
                 Util.Free(native_str);
             }
         }
-        public void appendf(string fmt)
+        public void appendf(ReadOnlySpan<char> fmt)
         {
             byte* native_fmt;
             int fmt_byteCount = 0;

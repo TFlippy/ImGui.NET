@@ -149,7 +149,7 @@ namespace ImGuiNET
             ImFont* ret = ImGuiNative.ImFontAtlas_AddFontDefault((ImFontAtlas*)(NativePtr), native_font_cfg);
             return new ImFontPtr(ret);
         }
-        public ImFontPtr AddFontFromFileTTF(string filename, float size_pixels)
+        public ImFontPtr AddFontFromFileTTF(ReadOnlySpan<char> filename, float size_pixels)
         {
             byte* native_filename;
             int filename_byteCount = 0;
@@ -178,7 +178,7 @@ namespace ImGuiNET
             }
             return new ImFontPtr(ret);
         }
-        public ImFontPtr AddFontFromFileTTF(string filename, float size_pixels, ImFontConfigPtr font_cfg)
+        public ImFontPtr AddFontFromFileTTF(ReadOnlySpan<char> filename, float size_pixels, ImFontConfigPtr font_cfg)
         {
             byte* native_filename;
             int filename_byteCount = 0;
@@ -207,7 +207,7 @@ namespace ImGuiNET
             }
             return new ImFontPtr(ret);
         }
-        public ImFontPtr AddFontFromFileTTF(string filename, float size_pixels, ImFontConfigPtr font_cfg, IntPtr glyph_ranges)
+        public ImFontPtr AddFontFromFileTTF(ReadOnlySpan<char> filename, float size_pixels, ImFontConfigPtr font_cfg, IntPtr glyph_ranges)
         {
             byte* native_filename;
             int filename_byteCount = 0;
@@ -236,7 +236,7 @@ namespace ImGuiNET
             }
             return new ImFontPtr(ret);
         }
-        public ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressed_font_data_base85, float size_pixels)
+        public ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<char> compressed_font_data_base85, float size_pixels)
         {
             byte* native_compressed_font_data_base85;
             int compressed_font_data_base85_byteCount = 0;
@@ -265,7 +265,7 @@ namespace ImGuiNET
             }
             return new ImFontPtr(ret);
         }
-        public ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressed_font_data_base85, float size_pixels, ImFontConfigPtr font_cfg)
+        public ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<char> compressed_font_data_base85, float size_pixels, ImFontConfigPtr font_cfg)
         {
             byte* native_compressed_font_data_base85;
             int compressed_font_data_base85_byteCount = 0;
@@ -294,7 +294,7 @@ namespace ImGuiNET
             }
             return new ImFontPtr(ret);
         }
-        public ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressed_font_data_base85, float size_pixels, ImFontConfigPtr font_cfg, IntPtr glyph_ranges)
+        public ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<char> compressed_font_data_base85, float size_pixels, ImFontConfigPtr font_cfg, IntPtr glyph_ranges)
         {
             byte* native_compressed_font_data_base85;
             int compressed_font_data_base85_byteCount = 0;

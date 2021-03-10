@@ -202,7 +202,7 @@ namespace ImGuiNET
         {
             ImGuiNative.ImGuiIO_AddInputCharacter((ImGuiIO*)(NativePtr), c);
         }
-        public void AddInputCharactersUTF8(string str)
+        public void AddInputCharactersUTF8(ReadOnlySpan<char> str)
         {
             byte* native_str;
             int str_byteCount = 0;

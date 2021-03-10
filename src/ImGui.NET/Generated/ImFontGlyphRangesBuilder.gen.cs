@@ -27,7 +27,7 @@ namespace ImGuiNET
             ushort* native_ranges = (ushort*)ranges.ToPointer();
             ImGuiNative.ImFontGlyphRangesBuilder_AddRanges((ImFontGlyphRangesBuilder*)(NativePtr), native_ranges);
         }
-        public void AddText(string text)
+        public void AddText(ReadOnlySpan<char> text)
         {
             byte* native_text;
             int text_byteCount = 0;

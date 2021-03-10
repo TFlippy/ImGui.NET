@@ -53,7 +53,7 @@ namespace ImGuiNET
             byte ret = ImGuiNative.ImGuiInputTextCallbackData_HasSelection((ImGuiInputTextCallbackData*)(NativePtr));
             return ret != 0;
         }
-        public void InsertChars(int pos, string text)
+        public void InsertChars(int pos, ReadOnlySpan<char> text)
         {
             byte* native_text;
             int text_byteCount = 0;

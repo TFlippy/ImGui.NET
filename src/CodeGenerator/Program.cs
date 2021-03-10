@@ -271,10 +271,11 @@ namespace CodeGenerator
                             ? exportedName.Substring(0, exportedName.IndexOf("_nonUDT"))
                             : exportedName;
 
+                        writer.WriteLine("[SuppressGCTransition]");
+
                         if (isUdtVariant)
                         {
                             writer.WriteLine($"[DllImport(\"cimgui\", CallingConvention = CallingConvention.Cdecl, EntryPoint = \"{exportedName}\")]");
-
                         }
                         else
                         {
@@ -441,7 +442,8 @@ namespace CodeGenerator
                     }
 
                     string nativeArgName = "native_" + tr.Name;
-                    marshalledParameters[i] = new MarshalledParameter("string", false, nativeArgName, hasDefault);
+                    //marshalledParameters[i] = new MarshalledParameter("string", false, nativeArgName, hasDefault);
+                    marshalledParameters[i] = new MarshalledParameter("ReadOnlySpan<char>", false, nativeArgName, hasDefault);
 
                     if (textToEncode == "null")
                     {

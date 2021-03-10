@@ -1,4 +1,4 @@
 ﻿namespace ImGuiNET
 {
-    public unsafe delegate int ImGuiInputTextCallback(ImGuiInputTextCallbackData* data);
+	public unsafe delegate int ImGuiInputTextCallback(ImGuiInputTextCallbackData* data);
 }

@@ -40,7 +40,7 @@ namespace ImGuiNET
         {
             ImGuiNative.ImGuiPayload_destroy((ImGuiPayload*)(NativePtr));
         }
-        public bool IsDataType(string type)
+        public bool IsDataType(ReadOnlySpan<char> type)
         {
             byte* native_type;
             int type_byteCount = 0;
