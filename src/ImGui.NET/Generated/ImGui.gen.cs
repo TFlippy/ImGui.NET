@@ -66,10 +66,11 @@ namespace ImGuiNET
         {
             ImGuiNative.igActivateItem(id);
         }
-        public static uint AddContextHook(IntPtr context, ImGuiContextHookPtr hook)
+        public static uint AddContextHook(ImGuiContextPtr context, ImGuiContextHookPtr hook)
         {
+            ImGuiContext* native_context = context.NativePtr;
             ImGuiContextHook* native_hook = hook.NativePtr;
-            uint ret = ImGuiNative.igAddContextHook(context, native_hook);
+            uint ret = ImGuiNative.igAddContextHook(native_context, native_hook);
             return ret;
         }
         public static void AlignTextToFramePadding()
@@ -1687,9 +1688,10 @@ namespace ImGuiNET
             float ret = ImGuiNative.igCalcWrapWidthForPos(pos, wrap_pos_x);
             return ret;
         }
-        public static void CallContextHooks(IntPtr context, ImGuiContextHookType type)
+        public static void CallContextHooks(ImGuiContextPtr context, ImGuiContextHookType type)
         {
-            ImGuiNative.igCallContextHooks(context, type);
+            ImGuiContext* native_context = context.NativePtr;
+            ImGuiNative.igCallContextHooks(native_context, type);
         }
         public static void CaptureKeyboardFromApp()
         {
@@ -2744,17 +2746,17 @@ namespace ImGuiNET
                 return ret != 0;
             }
         }
-        public static IntPtr CreateContext()
+        public static ImGuiContextPtr CreateContext()
         {
             ImFontAtlas* shared_font_atlas = null;
-            IntPtr ret = ImGuiNative.igCreateContext(shared_font_atlas);
-            return ret;
+            ImGuiContext* ret = ImGuiNative.igCreateContext(shared_font_atlas);
+            return new ImGuiContextPtr(ret);
         }
-        public static IntPtr CreateContext(ImFontAtlasPtr shared_font_atlas)
+        public static ImGuiContextPtr CreateContext(ImFontAtlasPtr shared_font_atlas)
         {
             ImFontAtlas* native_shared_font_atlas = shared_font_atlas.NativePtr;
-            IntPtr ret = ImGuiNative.igCreateContext(native_shared_font_atlas);
-            return ret;
+            ImGuiContext* ret = ImGuiNative.igCreateContext(native_shared_font_atlas);
+            return new ImGuiContextPtr(ret);
         }
         public static ImGuiWindowSettingsPtr CreateNewWindowSettings(ReadOnlySpan<char> name)
         {
@@ -3152,12 +3154,13 @@ namespace ImGuiNET
         }
         public static void DestroyContext()
         {
-            IntPtr ctx = IntPtr.Zero;
+            ImGuiContext* ctx = null;
             ImGuiNative.igDestroyContext(ctx);
         }
-        public static void DestroyContext(IntPtr ctx)
+        public static void DestroyContext(ImGuiContextPtr ctx)
         {
-            ImGuiNative.igDestroyContext(ctx);
+            ImGuiContext* native_ctx = ctx.NativePtr;
+            ImGuiNative.igDestroyContext(native_ctx);
         }
         public static bool DragBehavior(uint id, ImGuiDataType data_type, IntPtr p_v, float v_speed, IntPtr p_min, IntPtr p_max, ReadOnlySpan<char> format, ImGuiSliderFlags flags)
         {
@@ -7282,10 +7285,10 @@ namespace ImGuiNET
             ImGuiNative.igGetContentRegionMaxAbs(&__retval);
             return __retval;
         }
-        public static IntPtr GetCurrentContext()
+        public static ImGuiContextPtr GetCurrentContext()
         {
-            IntPtr ret = ImGuiNative.igGetCurrentContext();
-            return ret;
+            ImGuiContext* ret = ImGuiNative.igGetCurrentContext();
+            return new ImGuiContextPtr(ret);
         }
         public static ImGuiWindowPtr GetCurrentWindow()
         {
@@ -8945,9 +8948,10 @@ namespace ImGuiNET
         {
             ImGuiNative.igIndent(indent_w);
         }
-        public static void Initialize(IntPtr context)
+        public static void Initialize(ImGuiContextPtr context)
         {
-            ImGuiNative.igInitialize(context);
+            ImGuiContext* native_context = context.NativePtr;
+            ImGuiNative.igInitialize(native_context);
         }
         public static bool InputDouble(ReadOnlySpan<char> label, ref double v)
         {
@@ -12901,9 +12905,10 @@ namespace ImGuiNET
                 return ret != 0;
             }
         }
-        public static void RemoveContextHook(IntPtr context, uint hook_to_remove)
+        public static void RemoveContextHook(ImGuiContextPtr context, uint hook_to_remove)
         {
-            ImGuiNative.igRemoveContextHook(context, hook_to_remove);
+            ImGuiContext* native_context = context.NativePtr;
+            ImGuiNative.igRemoveContextHook(native_context, hook_to_remove);
         }
         public static void Render()
         {
@@ -13375,9 +13380,10 @@ namespace ImGuiNET
         {
             ImGuiNative.igSetColumnWidth(column_index, width);
         }
-        public static void SetCurrentContext(IntPtr ctx)
+        public static void SetCurrentContext(ImGuiContextPtr ctx)
         {
-            ImGuiNative.igSetCurrentContext(ctx);
+            ImGuiContext* native_ctx = ctx.NativePtr;
+            ImGuiNative.igSetCurrentContext(native_ctx);
         }
         public static void SetCurrentFont(ImFontPtr font)
         {
@@ -14095,9 +14101,10 @@ namespace ImGuiNET
             ImGuiShrinkWidthItem* native_items = items.NativePtr;
             ImGuiNative.igShrinkWidths(native_items, count, width_excess);
         }
-        public static void Shutdown(IntPtr context)
+        public static void Shutdown(ImGuiContextPtr context)
         {
-            ImGuiNative.igShutdown(context);
+            ImGuiContext* native_context = context.NativePtr;
+            ImGuiNative.igShutdown(native_context);
         }
         public static bool SliderAngle(ReadOnlySpan<char> label, ref float v_rad)
         {
@@ -16479,9 +16486,10 @@ namespace ImGuiNET
             ImGuiTableSettings* ret = ImGuiNative.igTableSettingsFindByID(id);
             return new ImGuiTableSettingsPtr(ret);
         }
-        public static void TableSettingsInstallHandler(IntPtr context)
+        public static void TableSettingsInstallHandler(ImGuiContextPtr context)
         {
-            ImGuiNative.igTableSettingsInstallHandler(context);
+            ImGuiContext* native_context = context.NativePtr;
+            ImGuiNative.igTableSettingsInstallHandler(native_context);
         }
         public static void TableSetupColumn(ReadOnlySpan<char> label)
         {

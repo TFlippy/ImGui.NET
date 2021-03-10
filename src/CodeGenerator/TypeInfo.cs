@@ -55,7 +55,7 @@ namespace CodeGenerator
 			{ "ImGuiInputTextCallback", "delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int>" },
 
 			{ "size_t", "uint" },
-			{ "ImGuiContext*", "IntPtr" },
+			//{ "ImGuiContext*", "IntPtr" },
 			{ "float[2]", "Vector2*" },
 			{ "float[3]", "Vector3*" },
 			{ "float[4]", "Vector4*" },

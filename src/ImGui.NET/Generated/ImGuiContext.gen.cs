@@ -428,7 +428,7 @@ namespace ImGuiNET
         public RangeAccessor<byte> TempBuffer => new RangeAccessor<byte>(NativePtr->TempBuffer, 3073);
         public void Destroy()
         {
-            ImGuiNative.ImGuiContext_destroy((IntPtr)(NativePtr));
+            ImGuiNative.ImGuiContext_destroy((ImGuiContext*)(NativePtr));
         }
     }
 }
