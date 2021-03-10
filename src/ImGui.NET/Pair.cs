@@ -12,8 +12,16 @@ namespace ImGuiNET
 	public unsafe struct ImGuiStoragePairPtr
 	{
 		public ImGuiStoragePair* NativePtr { get; }
-		public ImGuiStoragePairPtr(ImGuiStoragePair* nativePtr) => NativePtr = nativePtr;
-		public ImGuiStoragePairPtr(IntPtr nativePtr) => NativePtr = (ImGuiStoragePair*)nativePtr;
+		public ImGuiStoragePairPtr(ImGuiStoragePair* nativePtr)
+		{
+			this.NativePtr = nativePtr;
+		}
+
+		public ImGuiStoragePairPtr(IntPtr nativePtr)
+		{
+			this.NativePtr = (ImGuiStoragePair*)nativePtr;
+		}
+
 		public static implicit operator ImGuiStoragePairPtr(ImGuiStoragePair* nativePtr) => new ImGuiStoragePairPtr(nativePtr);
 		public static implicit operator ImGuiStoragePair*(ImGuiStoragePairPtr wrappedPtr) => wrappedPtr.NativePtr;
 		public static implicit operator ImGuiStoragePairPtr(IntPtr nativePtr) => new ImGuiStoragePairPtr(nativePtr);

@@ -14,20 +14,20 @@ namespace ImGuiNET
 		public RangeAccessor(IntPtr data, int count) : this(data.ToPointer(), count) { }
 		public RangeAccessor(void* data, int count)
 		{
-			Data = data;
-			Count = count;
+			this.Data = data;
+			this.Count = count;
 		}
 
 		public ref T this[int index]
 		{
 			get
 			{
-				if (index < 0 || index >= Count)
+				if (index < 0 || index >= this.Count)
 				{
 					throw new IndexOutOfRangeException();
 				}
 
-				return ref Unsafe.AsRef<T>((byte*)Data + s_sizeOfT * index);
+				return ref Unsafe.AsRef<T>((byte*)this.Data + s_sizeOfT * index);
 			}
 		}
 	}
@@ -40,20 +40,20 @@ namespace ImGuiNET
 		public RangePtrAccessor(IntPtr data, int count) : this(data.ToPointer(), count) { }
 		public RangePtrAccessor(void* data, int count)
 		{
-			Data = data;
-			Count = count;
+			this.Data = data;
+			this.Count = count;
 		}
 
 		public T this[int index]
 		{
 			get
 			{
-				if (index < 0 || index >= Count)
+				if (index < 0 || index >= this.Count)
 				{
 					throw new IndexOutOfRangeException();
 				}
 
-				return Unsafe.Read<T>((byte*)Data + sizeof(void*) * index);
+				return Unsafe.Read<T>((byte*)this.Data + sizeof(void*) * index);
 			}
 		}
 	}

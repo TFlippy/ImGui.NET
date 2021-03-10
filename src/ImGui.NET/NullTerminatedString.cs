@@ -8,20 +8,20 @@ namespace ImGuiNET
 
 		public NullTerminatedString(byte* data)
 		{
-			Data = data;
+			this.Data = data;
 		}
 
 		public override string ToString()
 		{
-			int length = 0;
-			byte* ptr = Data;
+			var length = 0;
+			var ptr = this.Data;
 			while (*ptr != 0)
 			{
 				length += 1;
 				ptr += 1;
 			}
 
-			return Encoding.ASCII.GetString(Data, length);
+			return Encoding.ASCII.GetString(this.Data, length);
 		}
 
 		public static implicit operator string(NullTerminatedString nts) => nts.ToString();
