@@ -7,8 +7,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="structs_and_enums.json" CopyToOutputDirectory="PreserveNewest" />
-		<Content Include="definitions.json" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="structs_and_enums.json" CopyToOutputDirectory="Never" />
+		<Content Include="definitions.json" CopyToOutputDirectory="Never" />
 		<Content Include="variants.json" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 

@@ -12,9 +12,16 @@ namespace CodeGenerator
 			{ "char", "byte" },
 			{ "ImWchar", "ushort" },
 			{ "ImFileHandle", "IntPtr" },
+
 			{ "ImU8", "byte" },
 			{ "ImS8", "sbyte" },
+			{ "ImU16", "ushort" },
+			{ "ImS16", "short" },
+			{ "ImU32", "uint" },
+			{ "ImS32", "int" },
 			{ "ImU64", "ulong" },
+			{ "ImS64", "long" },
+
 			{ "unsigned short", "ushort" },
 			{ "unsigned int", "uint" },
 			{ "ImVec2", "Vector2" },
@@ -29,8 +36,24 @@ namespace CodeGenerator
 			{ "ImDrawIdx", "ushort" },
 			{ "ImDrawListSharedData", "IntPtr" },
 			{ "ImDrawListSharedData*", "IntPtr" },
-			{ "ImU32", "uint" },
-			{ "ImDrawCallback", "IntPtr" },
+
+			{ "ImGuiTableColumnIdx", "sbyte" },
+			{ "ImGuiTableDrawChannelIdx", "byte" },
+
+			{ "ImSpan_ImGuiTableColumn", "ImSpan<ImGuiTableColumn>" },
+			{ "ImSpan_ImGuiTableColumnIdx", "ImSpan<sbyte>" },
+			{ "ImSpan_ImGuiTableCellData", "ImSpan<ImGuiTableCellData>" },
+
+			{ "ImPool_ImGuiTable", "ImPool<ImGuiTable>" },
+			{ "ImPool_ImGuiTabBar", "ImPool<ImGuiTabBar>" },
+
+
+			{ "ImDrawCallback", "void*" },
+			{ "ImGuiContextHookCallback", "void*" },
+			{ "ImGuiErrorLogCallback", "void*" },
+			{ "ImGuiSizeCallback", "void*" },
+			{ "ImGuiInputTextCallback", "delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int>" },
+
 			{ "size_t", "uint" },
 			{ "ImGuiContext*", "IntPtr" },
 			{ "float[2]", "Vector2*" },
@@ -56,21 +79,30 @@ namespace CodeGenerator
 			"ImVec2",
 			"ImVec4",
 			"ImGuiStoragePair",
+			"ImGuiStyleMod",
+			"ImGuiDataTypePrivate"
 		};
 
 		public static readonly Dictionary<string, string> WellKnownDefaultValues = new Dictionary<string, string>()
 		{
 			{ "((void *)0)", "null" },
+			{ "NULL", "null" },
 			{ "((void*)0)", "null" },
 			{ "ImVec2(0,0)", "new Vector2()" },
 			{ "ImVec2(-1,0)", "new Vector2(-1, 0)" },
 			{ "ImVec2(1,0)", "new Vector2(1, 0)" },
 			{ "ImVec2(1,1)", "new Vector2(1, 1)" },
 			{ "ImVec2(0,1)", "new Vector2(0, 1)" },
+			{ "ImVec2(0.0f,0.0f)", "new Vector2(0, 0)" },
 			{ "ImVec4(0,0,0,0)", "new Vector4()" },
 			{ "ImVec4(1,1,1,1)", "new Vector4(1, 1, 1, 1)" },
 			{ "ImDrawCornerFlags_All", "ImDrawCornerFlags.All" },
+			{ "ImGuiPopupFlags_None", "ImGuiPopupFlags.None" },
+			{ "ImGuiNavHighlightFlags_TypeDefault", "ImGuiNavHighlightFlags.TypeDefault" },
+			{ "ImGuiDataType_COUNT", "ImGuiDataType.COUNT" },
+			{ "ImVec2(-FLT_MIN,0)", "new Vector2(-float.MinValue, 0)" },
 			{ "FLT_MAX", "float.MaxValue" },
+			{ "FLT_MIN", "float.MinValue" },
 			{ "(((ImU32)(255)<<24)|((ImU32)(255)<<16)|((ImU32)(255)<<8)|((ImU32)(255)<<0))", "0xFFFFFFFF" }
 		};
 
@@ -100,8 +132,11 @@ namespace CodeGenerator
 		{
 			"igInputText",
 			"igInputTextMultiline",
+			"igInputTextEx",
 			"igCalcTextSize",
-			"igInputTextWithHint"
+			"igInputTextWithHint",
+			"igErrorCheckEndFrameRecover",
+			"igFindBestWindowPosForPopupEx"
 		};
 	}
 }

@@ -45,14 +45,14 @@ namespace ImGuiNET
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-		internal static int CalcSizeInUtf8(string s, int start, int length)
+		internal static int CalcSizeInUtf8(ReadOnlySpan<char> s, int start, int length)
 		{
 			if (start < 0 || length < 0 || start + length > s.Length)
 			{
 				throw new ArgumentOutOfRangeException();
 			}
 
-			return Encoding.UTF8.GetByteCount(s.AsSpan().Slice(start, length));
+			return Encoding.UTF8.GetByteCount(s.Slice(start, length));
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -61,11 +61,11 @@ namespace ImGuiNET
 			return Encoding.UTF8.GetBytes(s, new Span<byte>(utf8Bytes, utf8ByteCount));
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-		internal static int GetUtf8(string s, byte* utf8Bytes, int utf8ByteCount)
-		{
-			return Encoding.UTF8.GetBytes(s.AsSpan(), new Span<byte>(utf8Bytes, utf8ByteCount));
-		}
+		//[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+		//internal static int GetUtf8(string s, byte* utf8Bytes, int utf8ByteCount)
+		//{
+		//	return Encoding.UTF8.GetBytes(s.AsSpan(), new Span<byte>(utf8Bytes, utf8ByteCount));
+		//}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 		internal static int GetUtf8(ReadOnlySpan<char> s, int start, int length, byte* utf8Bytes, int utf8ByteCount)
@@ -78,15 +78,15 @@ namespace ImGuiNET
 			return Encoding.UTF8.GetBytes(s.Slice(start, length), new Span<byte>(utf8Bytes, utf8ByteCount));
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-		internal static int GetUtf8(string s, int start, int length, byte* utf8Bytes, int utf8ByteCount)
-		{
-			if (start < 0 || length < 0 || start + length > s.Length)
-			{
-				throw new ArgumentOutOfRangeException();
-			}
+		//[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+		//internal static int GetUtf8(string s, int start, int length, byte* utf8Bytes, int utf8ByteCount)
+		//{
+		//	if (start < 0 || length < 0 || start + length > s.Length)
+		//	{
+		//		throw new ArgumentOutOfRangeException();
+		//	}
 
-			return Encoding.UTF8.GetBytes(s.AsSpan().Slice(start, length), new Span<byte>(utf8Bytes, utf8ByteCount));
-		}
+		//	return Encoding.UTF8.GetBytes(s.AsSpan().Slice(start, length), new Span<byte>(utf8Bytes, utf8ByteCount));
+		//}
 	}
 }

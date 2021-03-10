@@ -18,7 +18,8 @@ namespace CodeGenerator
 			}
 			else
 			{
-				outputPath = AppContext.BaseDirectory;
+				outputPath = Path.Combine(AppContext.BaseDirectory, @"Generated\");
+				if (!Directory.Exists(outputPath)) Directory.CreateDirectory(outputPath);
 			}
 
 			var defs = new ImguiDefinitions();
@@ -441,7 +442,7 @@ namespace CodeGenerator
 					//marshalledParameters[i] = new MarshalledParameter("string", false, nativeArgName, hasDefault);
 					marshalledParameters[i] = new MarshalledParameter("ReadOnlySpan<char>", false, nativeArgName, hasDefault);
 
-					if (textToEncode == "null")
+					if (textToEncode.Equals("null", StringComparison.OrdinalIgnoreCase))
 					{
 						preCallLines.Add($"byte* {nativeArgName} = null;");
 					}

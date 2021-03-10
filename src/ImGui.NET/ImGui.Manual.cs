@@ -1,10 +1,71 @@
 ﻿using System;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ImGuiNET
 {
+	public unsafe struct ImSpan<T> where T : unmanaged
+	{
+		public T* Data;
+		public T* DataEnd;
+	}
+
+	public unsafe struct ImPool<T> where T : unmanaged
+	{
+		public ImVector<T> Buf;
+		public ImGuiStorage Map;
+		public int FreeIdx;
+	}
+
+	public unsafe struct ImChunkStream
+	{
+		public ImVector<byte> Buf;
+	}
+
+
+	public unsafe struct ImGuiStyleMod
+	{
+		public ImGuiStyleVar VarIdx;
+		public Union union;
+
+		[StructLayout(LayoutKind.Explicit, Size = 8)]
+		public struct Union
+		{
+			[FieldOffset(0)]
+			public fixed int BackupInt[2];
+
+			[FieldOffset(0)]
+			public fixed float BackupFloat[2];
+		}
+	}
+
+	public unsafe partial struct ImGuiStyleModPtr
+	{
+		public ImGuiStyleMod* NativePtr { get; }
+		public ImGuiStyleModPtr(ImGuiStyleMod* nativePtr) => NativePtr = nativePtr;
+		public ImGuiStyleModPtr(IntPtr nativePtr) => NativePtr = (ImGuiStyleMod*)nativePtr;
+		public static implicit operator ImGuiStyleModPtr(ImGuiStyleMod* nativePtr) => new ImGuiStyleModPtr(nativePtr);
+		public static implicit operator ImGuiStyleMod*(ImGuiStyleModPtr wrappedPtr) => wrappedPtr.NativePtr;
+		public static implicit operator ImGuiStyleModPtr(IntPtr nativePtr) => new ImGuiStyleModPtr(nativePtr);
+		public ref ImGuiStyleVar VarIdx => ref Unsafe.AsRef<ImGuiStyleVar>(&NativePtr->VarIdx);
+		public void Destroy()
+		{
+			ImGuiNative.ImGuiStyleMod_destroy((ImGuiStyleMod*)(NativePtr));
+		}
+	}
+
+	public unsafe partial struct ImGuiItemFlagsPtr
+	{
+		public ImGuiItemFlags* NativePtr { get; }
+		public ImGuiItemFlagsPtr(ImGuiItemFlags* nativePtr) => NativePtr = nativePtr;
+		public ImGuiItemFlagsPtr(IntPtr nativePtr) => NativePtr = (ImGuiItemFlags*)nativePtr;
+		public static implicit operator ImGuiItemFlagsPtr(ImGuiItemFlags* nativePtr) => new ImGuiItemFlagsPtr(nativePtr);
+		public static implicit operator ImGuiItemFlags*(ImGuiItemFlagsPtr wrappedPtr) => wrappedPtr.NativePtr;
+		public static implicit operator ImGuiItemFlagsPtr(IntPtr nativePtr) => new ImGuiItemFlagsPtr(nativePtr);
+	}
+
 	public static unsafe partial class ImGui
 	{
 		public static bool InputText(
@@ -29,17 +90,17 @@ namespace ImGuiNET
 			byte[] buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback)
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback)
 		{
 			return InputText(label, buf, buf_size, flags, callback, IntPtr.Zero);
 		}
 
-		public static bool InputText(
+		public static unsafe bool InputText(
 			string label,
 			byte[] buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback,
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback,
 			IntPtr user_data)
 		{
 			var utf8LabelByteCount = Encoding.UTF8.GetByteCount(label);
@@ -91,7 +152,7 @@ namespace ImGuiNET
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback)
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback)
 		{
 			return InputText(label, ref input, maxLength, flags, callback, IntPtr.Zero);
 		}
@@ -101,7 +162,7 @@ namespace ImGuiNET
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback,
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback,
 			IntPtr user_data)
 		{
 			var utf8LabelByteCount = Encoding.UTF8.GetByteCount(label);
@@ -189,7 +250,7 @@ namespace ImGuiNET
 			uint maxLength,
 			Vector2 size,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback)
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback)
 		{
 			return InputTextMultiline(label, ref input, maxLength, size, flags, callback, IntPtr.Zero);
 		}
@@ -200,7 +261,7 @@ namespace ImGuiNET
 			uint maxLength,
 			Vector2 size,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback,
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback,
 			IntPtr user_data)
 		{
 			var utf8LabelByteCount = Encoding.UTF8.GetByteCount(label);
@@ -289,7 +350,7 @@ namespace ImGuiNET
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback)
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback)
 		{
 			return InputTextWithHint(label, hint, ref input, maxLength, flags, callback, IntPtr.Zero);
 		}
@@ -300,7 +361,7 @@ namespace ImGuiNET
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback,
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback,
 			IntPtr user_data)
 		{
 			var utf8LabelByteCount = Encoding.UTF8.GetByteCount(label);
@@ -498,7 +559,7 @@ namespace ImGuiNET
 			IntPtr buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback)
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback)
 		{
 			return InputText(label, buf, buf_size, flags, callback, IntPtr.Zero);
 		}
@@ -508,7 +569,7 @@ namespace ImGuiNET
 			IntPtr buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
-			ImGuiInputTextCallback callback,
+			delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback,
 			IntPtr user_data)
 		{
 			var utf8LabelByteCount = Encoding.UTF8.GetByteCount(label);

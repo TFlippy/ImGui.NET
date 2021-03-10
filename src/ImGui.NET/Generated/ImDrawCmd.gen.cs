@@ -12,7 +12,7 @@ namespace ImGuiNET
         public uint VtxOffset;
         public uint IdxOffset;
         public uint ElemCount;
-        public IntPtr UserCallback;
+        public void* UserCallback;
         public void* UserCallbackData;
     }
     public unsafe partial struct ImDrawCmdPtr
@@ -28,7 +28,7 @@ namespace ImGuiNET
         public ref uint VtxOffset => ref Unsafe.AsRef<uint>(&NativePtr->VtxOffset);
         public ref uint IdxOffset => ref Unsafe.AsRef<uint>(&NativePtr->IdxOffset);
         public ref uint ElemCount => ref Unsafe.AsRef<uint>(&NativePtr->ElemCount);
-        public ref IntPtr UserCallback => ref Unsafe.AsRef<IntPtr>(&NativePtr->UserCallback);
+        public IntPtr UserCallback { get => (IntPtr)NativePtr->UserCallback; set => NativePtr->UserCallback = (void*)value; }
         public IntPtr UserCallbackData { get => (IntPtr)NativePtr->UserCallbackData; set => NativePtr->UserCallbackData = (void*)value; }
         public void Destroy()
         {
