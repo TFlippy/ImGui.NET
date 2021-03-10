@@ -24,7 +24,6 @@ namespace ImGuiNET
 		public ImVector<byte> Buf;
 	}
 
-
 	public unsafe struct ImGuiStyleMod
 	{
 		public ImGuiStyleVar VarIdx;
@@ -69,7 +68,7 @@ namespace ImGuiNET
 	public static unsafe partial class ImGui
 	{
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			byte[] buf,
 			uint buf_size)
 		{
@@ -77,7 +76,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			byte[] buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags)
@@ -86,7 +85,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			byte[] buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
@@ -96,7 +95,7 @@ namespace ImGuiNET
 		}
 
 		public static unsafe bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			byte[] buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
@@ -131,7 +130,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength)
 		{
@@ -139,7 +138,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags)
@@ -148,7 +147,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
@@ -158,7 +157,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
@@ -226,7 +225,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextMultiline(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength,
 			Vector2 size)
@@ -235,7 +234,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextMultiline(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength,
 			Vector2 size,
@@ -245,7 +244,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextMultiline(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength,
 			Vector2 size,
@@ -256,7 +255,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextMultiline(
-			string label,
+			ReadOnlySpan<char> label,
 			ref string input,
 			uint maxLength,
 			Vector2 size,
@@ -326,8 +325,8 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextWithHint(
-			string label,
-			string hint,
+			ReadOnlySpan<char> label,
+			ReadOnlySpan<char> hint,
 			ref string input,
 			uint maxLength)
 		{
@@ -335,8 +334,8 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextWithHint(
-			string label,
-			string hint,
+			ReadOnlySpan<char> label,
+			ReadOnlySpan<char> hint,
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags)
@@ -345,8 +344,8 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextWithHint(
-			string label,
-			string hint,
+			ReadOnlySpan<char> label,
+			ReadOnlySpan<char> hint,
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
@@ -356,8 +355,8 @@ namespace ImGuiNET
 		}
 
 		public static bool InputTextWithHint(
-			string label,
-			string hint,
+			ReadOnlySpan<char> label,
+			ReadOnlySpan<char> hint,
 			ref string input,
 			uint maxLength,
 			ImGuiInputTextFlags flags,
@@ -538,7 +537,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			IntPtr buf,
 			uint buf_size)
 		{
@@ -546,7 +545,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			IntPtr buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags)
@@ -555,7 +554,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			IntPtr buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
@@ -565,7 +564,7 @@ namespace ImGuiNET
 		}
 
 		public static bool InputText(
-			string label,
+			ReadOnlySpan<char> label,
 			IntPtr buf,
 			uint buf_size,
 			ImGuiInputTextFlags flags,
@@ -595,7 +594,7 @@ namespace ImGuiNET
 			return ret;
 		}
 
-		public static bool Begin(string name, ImGuiWindowFlags flags)
+		public static bool Begin(ReadOnlySpan<char> name, ImGuiWindowFlags flags)
 		{
 			var utf8NameByteCount = Encoding.UTF8.GetByteCount(name);
 			byte* utf8NameBytes;
@@ -621,7 +620,7 @@ namespace ImGuiNET
 			return ret != 0;
 		}
 
-		public static bool MenuItem(string label, bool enabled)
+		public static bool MenuItem(ReadOnlySpan<char> label, bool enabled)
 		{
 			return MenuItem(label, string.Empty, false, enabled);
 		}
