@@ -9,6 +9,7 @@ namespace ImGuiNET
     {
         public uint ID;
         public ImGuiTabItemFlags Flags;
+        public ImGuiWindow* Window;
         public int LastFrameVisible;
         public int LastFrameSelected;
         public float Offset;
@@ -29,6 +30,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiTabItemPtr(IntPtr nativePtr) => new ImGuiTabItemPtr(nativePtr);
         public ref uint ID => ref Unsafe.AsRef<uint>(&NativePtr->ID);
         public ref ImGuiTabItemFlags Flags => ref Unsafe.AsRef<ImGuiTabItemFlags>(&NativePtr->Flags);
+        public ImGuiWindowPtr Window => new ImGuiWindowPtr(NativePtr->Window);
         public ref int LastFrameVisible => ref Unsafe.AsRef<int>(&NativePtr->LastFrameVisible);
         public ref int LastFrameSelected => ref Unsafe.AsRef<int>(&NativePtr->LastFrameSelected);
         public ref float Offset => ref Unsafe.AsRef<float>(&NativePtr->Offset);

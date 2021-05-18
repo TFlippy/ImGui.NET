@@ -7,11 +7,12 @@ namespace ImGuiNET
 {
     public unsafe partial struct ImFontAtlas
     {
-        public byte Locked;
         public ImFontAtlasFlags Flags;
         public IntPtr TexID;
         public int TexDesiredWidth;
         public int TexGlyphPadding;
+        public byte Locked;
+        public byte TexPixelsUseColors;
         public byte* TexPixelsAlpha8;
         public uint* TexPixelsRGBA32;
         public int TexWidth;
@@ -98,11 +99,12 @@ namespace ImGuiNET
         public static implicit operator ImFontAtlasPtr(ImFontAtlas* nativePtr) => new ImFontAtlasPtr(nativePtr);
         public static implicit operator ImFontAtlas* (ImFontAtlasPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImFontAtlasPtr(IntPtr nativePtr) => new ImFontAtlasPtr(nativePtr);
-        public ref bool Locked => ref Unsafe.AsRef<bool>(&NativePtr->Locked);
         public ref ImFontAtlasFlags Flags => ref Unsafe.AsRef<ImFontAtlasFlags>(&NativePtr->Flags);
         public ref IntPtr TexID => ref Unsafe.AsRef<IntPtr>(&NativePtr->TexID);
         public ref int TexDesiredWidth => ref Unsafe.AsRef<int>(&NativePtr->TexDesiredWidth);
         public ref int TexGlyphPadding => ref Unsafe.AsRef<int>(&NativePtr->TexGlyphPadding);
+        public ref bool Locked => ref Unsafe.AsRef<bool>(&NativePtr->Locked);
+        public ref bool TexPixelsUseColors => ref Unsafe.AsRef<bool>(&NativePtr->TexPixelsUseColors);
         public IntPtr TexPixelsAlpha8 { get => (IntPtr)NativePtr->TexPixelsAlpha8; set => NativePtr->TexPixelsAlpha8 = (byte*)value; }
         public IntPtr TexPixelsRGBA32 { get => (IntPtr)NativePtr->TexPixelsRGBA32; set => NativePtr->TexPixelsRGBA32 = (uint*)value; }
         public ref int TexWidth => ref Unsafe.AsRef<int>(&NativePtr->TexWidth);

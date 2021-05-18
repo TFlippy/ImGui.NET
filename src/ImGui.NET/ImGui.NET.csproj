@@ -16,6 +16,14 @@
 		<RootNamespace>ImGuiNET</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Compile Include="..\..\ImChunkStream.cs" Link="ImChunkStream.cs" />
+	  <Compile Include="..\..\ImGuiItemFlagsPtr.cs" Link="ImGuiItemFlagsPtr.cs" />
+	  <Compile Include="..\..\ImGuiStyleMod.cs" Link="ImGuiStyleMod.cs" />
+	  <Compile Include="..\..\ImGuiStyleModPtr.cs" Link="ImGuiStyleModPtr.cs" />
+	  <Compile Include="..\..\ImPool.cs" Link="ImPool.cs" />
+	  <Compile Include="..\..\ImSpan.cs" Link="ImSpan.cs" />
+	</ItemGroup>
+	<ItemGroup>
 		<Content Include="..\..\deps\cimgui\win-x64\cimgui.dll">
 			<PackagePath>runtimes/win-x64/native</PackagePath>
 			<Pack>true</Pack>

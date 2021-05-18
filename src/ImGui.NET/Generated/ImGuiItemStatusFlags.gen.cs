@@ -11,5 +11,6 @@ namespace ImGuiNET
         ToggledOpen = 1 << 4,
         HasDeactivated = 1 << 5,
         Deactivated = 1 << 6,
+        HoveredWindow = 1 << 7,
     }
 }

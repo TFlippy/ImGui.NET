@@ -62,6 +62,11 @@ namespace ImGuiNET
         {
             ImGuiNative.ImRect_Floor((ImRect*)(NativePtr));
         }
+        public float GetArea()
+        {
+            float ret = ImGuiNative.ImRect_GetArea((ImRect*)(NativePtr));
+            return ret;
+        }
         public Vector2 GetBL()
         {
             Vector2 __retval;

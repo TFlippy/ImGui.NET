@@ -90,9 +90,10 @@ namespace ImGuiNET
         public sbyte HeldHeaderColumn;
         public sbyte ReorderColumn;
         public sbyte ReorderColumnDir;
+        public sbyte LeftMostEnabledColumn;
+        public sbyte RightMostEnabledColumn;
         public sbyte LeftMostStretchedColumn;
         public sbyte RightMostStretchedColumn;
-        public sbyte RightMostEnabledColumn;
         public sbyte ContextPopupColumn;
         public sbyte FreezeRowsRequest;
         public sbyte FreezeRowsCount;
@@ -209,9 +210,10 @@ namespace ImGuiNET
         public ref sbyte HeldHeaderColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->HeldHeaderColumn);
         public ref sbyte ReorderColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->ReorderColumn);
         public ref sbyte ReorderColumnDir => ref Unsafe.AsRef<sbyte>(&NativePtr->ReorderColumnDir);
+        public ref sbyte LeftMostEnabledColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->LeftMostEnabledColumn);
+        public ref sbyte RightMostEnabledColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->RightMostEnabledColumn);
         public ref sbyte LeftMostStretchedColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->LeftMostStretchedColumn);
         public ref sbyte RightMostStretchedColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->RightMostStretchedColumn);
-        public ref sbyte RightMostEnabledColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->RightMostEnabledColumn);
         public ref sbyte ContextPopupColumn => ref Unsafe.AsRef<sbyte>(&NativePtr->ContextPopupColumn);
         public ref sbyte FreezeRowsRequest => ref Unsafe.AsRef<sbyte>(&NativePtr->FreezeRowsRequest);
         public ref sbyte FreezeRowsCount => ref Unsafe.AsRef<sbyte>(&NativePtr->FreezeRowsCount);

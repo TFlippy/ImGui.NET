@@ -12,5 +12,8 @@ namespace ImGuiNET
         HasFocus = 1 << 5,
         HasBgAlpha = 1 << 6,
         HasScroll = 1 << 7,
+        HasViewport = 1 << 8,
+        HasDock = 1 << 9,
+        HasWindowClass = 1 << 10,
     }
 }

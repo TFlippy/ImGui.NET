@@ -16,6 +16,7 @@ namespace ImGuiNET
         public float BackupCurrLineTextBaseOffset;
         public uint BackupActiveIdIsAlive;
         public byte BackupActiveIdPreviousFrameIsAlive;
+        public byte BackupHoveredIdIsAlive;
         public byte EmitItem;
     }
     public unsafe partial struct ImGuiGroupDataPtr
@@ -35,6 +36,7 @@ namespace ImGuiNET
         public ref float BackupCurrLineTextBaseOffset => ref Unsafe.AsRef<float>(&NativePtr->BackupCurrLineTextBaseOffset);
         public ref uint BackupActiveIdIsAlive => ref Unsafe.AsRef<uint>(&NativePtr->BackupActiveIdIsAlive);
         public ref bool BackupActiveIdPreviousFrameIsAlive => ref Unsafe.AsRef<bool>(&NativePtr->BackupActiveIdPreviousFrameIsAlive);
+        public ref bool BackupHoveredIdIsAlive => ref Unsafe.AsRef<bool>(&NativePtr->BackupHoveredIdIsAlive);
         public ref bool EmitItem => ref Unsafe.AsRef<bool>(&NativePtr->EmitItem);
     }
 }

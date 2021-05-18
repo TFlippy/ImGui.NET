@@ -17,7 +17,7 @@ namespace ImGuiNET
         AllowTabInput = 1 << 10,
         CtrlEnterForNewLine = 1 << 11,
         NoHorizontalScroll = 1 << 12,
-        AlwaysInsertMode = 1 << 13,
+        AlwaysOverwrite = 1 << 13,
         ReadOnly = 1 << 14,
         Password = 1 << 15,
         NoUndoRedo = 1 << 16,

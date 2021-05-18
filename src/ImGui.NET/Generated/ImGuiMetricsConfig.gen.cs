@@ -12,6 +12,7 @@ namespace ImGuiNET
         public byte ShowTablesRects;
         public byte ShowDrawCmdMesh;
         public byte ShowDrawCmdBoundingBoxes;
+        public byte ShowDockingNodes;
         public int ShowWindowsRectsType;
         public int ShowTablesRectsType;
     }
@@ -28,6 +29,7 @@ namespace ImGuiNET
         public ref bool ShowTablesRects => ref Unsafe.AsRef<bool>(&NativePtr->ShowTablesRects);
         public ref bool ShowDrawCmdMesh => ref Unsafe.AsRef<bool>(&NativePtr->ShowDrawCmdMesh);
         public ref bool ShowDrawCmdBoundingBoxes => ref Unsafe.AsRef<bool>(&NativePtr->ShowDrawCmdBoundingBoxes);
+        public ref bool ShowDockingNodes => ref Unsafe.AsRef<bool>(&NativePtr->ShowDockingNodes);
         public ref int ShowWindowsRectsType => ref Unsafe.AsRef<int>(&NativePtr->ShowWindowsRectsType);
         public ref int ShowTablesRectsType => ref Unsafe.AsRef<int>(&NativePtr->ShowTablesRectsType);
         public void Destroy()

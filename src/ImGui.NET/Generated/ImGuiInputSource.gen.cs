@@ -4,9 +4,9 @@ namespace ImGuiNET
     {
         _None = 0,
         _Mouse = 1,
-        _Nav = 2,
-        _NavKeyboard = 3,
-        _NavGamepad = 4,
+        _Keyboard = 2,
+        _Gamepad = 3,
+        _Nav = 4,
         _COUNT = 5,
     }
 }
