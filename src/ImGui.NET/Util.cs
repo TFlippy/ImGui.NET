@@ -36,12 +36,13 @@ namespace ImGuiNET
 
 		internal static byte* Allocate(int byteCount)
 		{
-			return (byte*)Marshal.AllocHGlobal(byteCount);
+			return (byte*)NativeMemory.Alloc((nuint)byteCount); // Marshal.AllocHGlobal(byteCount);
 		}
 
 		internal static void Free(byte* ptr)
 		{
-			Marshal.FreeHGlobal((IntPtr)ptr);
+			NativeMemory.Free(ptr);
+			//Marshal.FreeHGlobal((IntPtr)ptr);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]

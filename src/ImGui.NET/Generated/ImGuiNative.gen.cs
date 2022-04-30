@@ -593,6 +593,9 @@ namespace ImGuiNET
         public static extern uint igGetActiveID();
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igGetAllocatorFunctions(void** p_alloc_func, void** p_free_func, void** p_user_data);
+        [SuppressGCTransition]
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImDrawList* igGetBackgroundDrawListNil();
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -1659,6 +1662,9 @@ namespace ImGuiNET
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetActiveID(uint id, ImGuiWindow* window);
+        [SuppressGCTransition]
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igSetAllocatorFunctions(void* alloc_func, void* free_func, void* user_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetClipboardText(byte* text);

@@ -1,13 +1,112 @@
 ﻿using System;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ImGuiNET
 {
+	public static unsafe partial class ImGuiNative
+	{
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igGetRemainingSpace(Vector2* pOut);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igGetLineStart(Vector2* pOut);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igGetCursorMaxPos(Vector2* pOut);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igGetCurrentLineSize(Vector2* pOut);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igSetCurrentLineSize(Vector2 size);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igBeginGroup2(Vector2 size);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igEndGroup2();
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igResetLine(float offset_x, float offset_y);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igNewLine2(float height);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igTextEx2(byte* text, byte* text_end, ImGuiTextFlags flags, ImFont* font, float font_size, uint color, uint color_bg, Vector2 offset_bg);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igCalcTextSize2(byte* text, byte* text_end, byte hide_text_after_double_hash, float wrap_width, float font_size, ImFont* font, Vector2* pOut);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ImDrawList_AddLine2(ImDrawList* self, Vector2 p1, Vector2 p2, uint col0, uint col1, float thickness0, float thickness1);
+	}
 
 	public static unsafe partial class ImGui
 	{
+		public static void BeginGroup2(Vector2 size)
+		{
+			ImGuiNative.igBeginGroup2(size);
+		}
+
+		public static void EndGroup2()
+		{
+			ImGuiNative.igEndGroup2();
+		}
+
+		public static void ResetLine(float offset_x, float offset_y)
+		{
+			ImGuiNative.igResetLine(offset_x, offset_y);
+		}
+
+		public static Vector2 GetCurrentLineSize()
+		{
+			Vector2 __retval;
+			ImGuiNative.igGetCurrentLineSize(&__retval);
+			return __retval;
+		}
+
+		public static Vector2 GetCursorMaxPos()
+		{
+			Vector2 __retval;
+			ImGuiNative.igGetCursorMaxPos(&__retval);
+			return __retval;
+		}
+
+		public static void SetCurrentLineSize(Vector2 size)
+		{
+			ImGuiNative.igSetCurrentLineSize(size);
+		}
+
+		public static Vector2 GetRemainingSpace()
+		{
+			Vector2 __retval;
+			ImGuiNative.igGetRemainingSpace(&__retval);
+			return __retval;
+		}
+
+		public static Vector2 GetLineStart()
+		{
+			Vector2 __retval;
+			ImGuiNative.igGetLineStart(&__retval);
+			return __retval;
+		}
+
 		public static bool InputText(
 			ReadOnlySpan<char> label,
 			byte[] buf,
