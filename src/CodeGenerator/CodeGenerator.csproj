@@ -3,17 +3,15 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<LangVersion>preview</LangVersion>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
+		<StartupObject>CodeGenerator.Program</StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="structs_and_enums.json" CopyToOutputDirectory="Never" />
-		<Content Include="definitions.json" CopyToOutputDirectory="Never" />
 		<Content Include="variants.json" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
-
 </Project>

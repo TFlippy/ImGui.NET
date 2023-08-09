@@ -87,11 +87,11 @@ namespace ImGuiNET
         public IntPtr TexUvLines { get => (IntPtr)NativePtr->TexUvLines; set => NativePtr->TexUvLines = (Vector4*)value; }
         public void Destroy()
         {
-            ImGuiNative.ImDrawListSharedData_destroy((IntPtr)(NativePtr));
+            ImGuiNative.ImDrawListSharedData_destroy((ImDrawListSharedData*)(NativePtr));
         }
         public void SetCircleTessellationMaxError(float max_error)
         {
-            ImGuiNative.ImDrawListSharedData_SetCircleTessellationMaxError((IntPtr)(NativePtr), max_error);
+            ImGuiNative.ImDrawListSharedData_SetCircleTessellationMaxError((ImDrawListSharedData*)(NativePtr), max_error);
         }
     }
 }

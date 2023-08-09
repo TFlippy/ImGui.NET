@@ -2954,7 +2954,7 @@ namespace ImGuiNET
             ImGuiDataTypeInfo* ret = ImGuiNative.igDataTypeGetInfo(data_type);
             return new ImGuiDataTypeInfoPtr(ret);
         }
-        public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<char> version_str, uint sz_io, uint sz_style, uint sz_vec2, uint sz_vec4, uint sz_drawvert, uint sz_drawidx)
+        public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<char> version_str, nuint sz_io, nuint sz_style, nuint sz_vec2, nuint sz_vec4, nuint sz_drawvert, nuint sz_drawidx)
         {
             byte* native_version_str;
             int version_str_byteCount = 0;
@@ -7529,7 +7529,6 @@ namespace ImGuiNET
             uint ret = ImGuiNative.igGetActiveID();
             return ret;
         }
-
         public static ImDrawListPtr GetBackgroundDrawList()
         {
             ImDrawList* ret = ImGuiNative.igGetBackgroundDrawListNil();
@@ -7719,10 +7718,10 @@ namespace ImGuiNET
             ImDrawData* ret = ImGuiNative.igGetDrawData();
             return new ImDrawDataPtr(ret);
         }
-        public static IntPtr GetDrawListSharedData()
+        public static ImDrawListSharedDataPtr GetDrawListSharedData()
         {
-            IntPtr ret = ImGuiNative.igGetDrawListSharedData();
-            return ret;
+            ImDrawListSharedData* ret = ImGuiNative.igGetDrawListSharedData();
+            return new ImDrawListSharedDataPtr(ret);
         }
         public static uint GetFocusedFocusScope()
         {
@@ -8346,7 +8345,7 @@ namespace ImGuiNET
                 native_mode[native_mode_offset] = 0;
             }
             else { native_mode = null; }
-            uint* out_file_size = null;
+            nuint* out_file_size = null;
             int padding_bytes = 0;
             void* ret = ImGuiNative.igImFileLoadToMemory(native_filename, native_mode, out_file_size, padding_bytes);
             if (filename_byteCount > Util.StackAllocationSizeLimit)
@@ -8359,7 +8358,7 @@ namespace ImGuiNET
             }
             return (IntPtr)ret;
         }
-        public static IntPtr ImFileLoadToMemory(ReadOnlySpan<char> filename, ReadOnlySpan<char> mode, out uint out_file_size)
+        public static IntPtr ImFileLoadToMemory(ReadOnlySpan<char> filename, ReadOnlySpan<char> mode, out nuint out_file_size)
         {
             byte* native_filename;
             int filename_byteCount = 0;
@@ -8398,7 +8397,7 @@ namespace ImGuiNET
             }
             else { native_mode = null; }
             int padding_bytes = 0;
-            fixed (uint* native_out_file_size = &out_file_size)
+            fixed (nuint* native_out_file_size = &out_file_size)
             {
                 void* ret = ImGuiNative.igImFileLoadToMemory(native_filename, native_mode, native_out_file_size, padding_bytes);
                 if (filename_byteCount > Util.StackAllocationSizeLimit)
@@ -8412,7 +8411,7 @@ namespace ImGuiNET
                 return (IntPtr)ret;
             }
         }
-        public static IntPtr ImFileLoadToMemory(ReadOnlySpan<char> filename, ReadOnlySpan<char> mode, out uint out_file_size, int padding_bytes)
+        public static IntPtr ImFileLoadToMemory(ReadOnlySpan<char> filename, ReadOnlySpan<char> mode, out nuint out_file_size, int padding_bytes)
         {
             byte* native_filename;
             int filename_byteCount = 0;
@@ -8450,7 +8449,7 @@ namespace ImGuiNET
                 native_mode[native_mode_offset] = 0;
             }
             else { native_mode = null; }
-            fixed (uint* native_out_file_size = &out_file_size)
+            fixed (nuint* native_out_file_size = &out_file_size)
             {
                 void* ret = ImGuiNative.igImFileLoadToMemory(native_filename, native_mode, native_out_file_size, padding_bytes);
                 if (filename_byteCount > Util.StackAllocationSizeLimit)
@@ -8635,7 +8634,7 @@ namespace ImGuiNET
             ImFontBuilderIO* ret = ImGuiNative.igImFontAtlasGetBuilderForStbTruetype();
             return new ImFontBuilderIOPtr(ret);
         }
-        public static int ImFormatString(ReadOnlySpan<char> buf, uint buf_size, ReadOnlySpan<char> fmt)
+        public static int ImFormatString(ReadOnlySpan<char> buf, nuint buf_size, ReadOnlySpan<char> fmt)
         {
             byte* native_buf;
             int buf_byteCount = 0;
@@ -8689,14 +8688,14 @@ namespace ImGuiNET
             ImGuiDir ret = ImGuiNative.igImGetDirQuadrantFromDelta(dx, dy);
             return ret;
         }
-        public static uint ImHashData(IntPtr data, uint data_size)
+        public static uint ImHashData(IntPtr data, nuint data_size)
         {
             void* native_data = (void*)data.ToPointer();
             uint seed = 0;
             uint ret = ImGuiNative.igImHashData(native_data, data_size, seed);
             return ret;
         }
-        public static uint ImHashData(IntPtr data, uint data_size, uint seed)
+        public static uint ImHashData(IntPtr data, nuint data_size, uint seed)
         {
             void* native_data = (void*)data.ToPointer();
             uint ret = ImGuiNative.igImHashData(native_data, data_size, seed);
@@ -8722,7 +8721,7 @@ namespace ImGuiNET
                 native_data[native_data_offset] = 0;
             }
             else { native_data = null; }
-            uint data_size = 0;
+            nuint data_size = 0;
             uint seed = 0;
             uint ret = ImGuiNative.igImHashStr(native_data, data_size, seed);
             if (data_byteCount > Util.StackAllocationSizeLimit)
@@ -8731,7 +8730,7 @@ namespace ImGuiNET
             }
             return ret;
         }
-        public static uint ImHashStr(ReadOnlySpan<char> data, uint data_size)
+        public static uint ImHashStr(ReadOnlySpan<char> data, nuint data_size)
         {
             byte* native_data;
             int data_byteCount = 0;
@@ -8759,7 +8758,7 @@ namespace ImGuiNET
             }
             return ret;
         }
-        public static uint ImHashStr(ReadOnlySpan<char> data, uint data_size, uint seed)
+        public static uint ImHashStr(ReadOnlySpan<char> data, nuint data_size, uint seed)
         {
             byte* native_data;
             int data_byteCount = 0;
@@ -8954,7 +8953,7 @@ namespace ImGuiNET
             }
             return ret;
         }
-        public static string ImParseFormatTrimDecorations(ReadOnlySpan<char> format, ReadOnlySpan<char> buf, uint buf_size)
+        public static string ImParseFormatTrimDecorations(ReadOnlySpan<char> format, ReadOnlySpan<char> buf, nuint buf_size)
         {
             byte* native_format;
             int format_byteCount = 0;
@@ -9061,7 +9060,7 @@ namespace ImGuiNET
             }
             return Util.StringFromPtr(ret);
         }
-        public static string ImStrdupcpy(ReadOnlySpan<char> dst, ref uint p_dst_size, ReadOnlySpan<char> str)
+        public static string ImStrdupcpy(ReadOnlySpan<char> dst, ref nuint p_dst_size, ReadOnlySpan<char> str)
         {
             byte* native_dst;
             int dst_byteCount = 0;
@@ -9099,7 +9098,7 @@ namespace ImGuiNET
                 native_str[native_str_offset] = 0;
             }
             else { native_str = null; }
-            fixed (uint* native_p_dst_size = &p_dst_size)
+            fixed (nuint* native_p_dst_size = &p_dst_size)
             {
                 byte* ret = ImGuiNative.igImStrdupcpy(native_dst, native_p_dst_size, native_str);
                 if (dst_byteCount > Util.StackAllocationSizeLimit)
@@ -9168,7 +9167,7 @@ namespace ImGuiNET
             int ret = ImGuiNative.igImStrlenW(native_str);
             return ret;
         }
-        public static void ImStrncpy(ReadOnlySpan<char> dst, ReadOnlySpan<char> src, uint count)
+        public static void ImStrncpy(ReadOnlySpan<char> dst, ReadOnlySpan<char> src, nuint count)
         {
             byte* native_dst;
             int dst_byteCount = 0;
@@ -9216,7 +9215,7 @@ namespace ImGuiNET
                 Util.Free(native_src);
             }
         }
-        public static int ImStrnicmp(ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, uint count)
+        public static int ImStrnicmp(ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, nuint count)
         {
             byte* native_str1;
             int str1_byteCount = 0;
@@ -11711,14 +11710,14 @@ namespace ImGuiNET
                 native_ini_data[native_ini_data_offset] = 0;
             }
             else { native_ini_data = null; }
-            uint ini_size = 0;
+            nuint ini_size = 0;
             ImGuiNative.igLoadIniSettingsFromMemory(native_ini_data, ini_size);
             if (ini_data_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_ini_data);
             }
         }
-        public static void LoadIniSettingsFromMemory(ReadOnlySpan<char> ini_data, uint ini_size)
+        public static void LoadIniSettingsFromMemory(ReadOnlySpan<char> ini_data, nuint ini_size)
         {
             byte* native_ini_data;
             int ini_data_byteCount = 0;
@@ -11937,7 +11936,7 @@ namespace ImGuiNET
         {
             ImGuiNative.igMarkItemEdited(id);
         }
-        public static IntPtr MemAlloc(uint size)
+        public static IntPtr MemAlloc(nuint size)
         {
             void* ret = ImGuiNative.igMemAlloc(size);
             return (IntPtr)ret;
@@ -13529,13 +13528,13 @@ namespace ImGuiNET
         }
         public static string SaveIniSettingsToMemory()
         {
-            uint* out_ini_size = null;
+            nuint* out_ini_size = null;
             byte* ret = ImGuiNative.igSaveIniSettingsToMemory(out_ini_size);
             return Util.StringFromPtr(ret);
         }
-        public static string SaveIniSettingsToMemory(out uint out_ini_size)
+        public static string SaveIniSettingsToMemory(out nuint out_ini_size)
         {
-            fixed (uint* native_out_ini_size = &out_ini_size)
+            fixed (nuint* native_out_ini_size = &out_ini_size)
             {
                 byte* ret = ImGuiNative.igSaveIniSettingsToMemory(native_out_ini_size);
                 return Util.StringFromPtr(ret);
@@ -13853,7 +13852,7 @@ namespace ImGuiNET
         {
             ImGuiNative.igSetCursorScreenPos(pos);
         }
-        public static bool SetDragDropPayload(ReadOnlySpan<char> type, IntPtr data, uint sz)
+        public static bool SetDragDropPayload(ReadOnlySpan<char> type, IntPtr data, nuint sz)
         {
             byte* native_type;
             int type_byteCount = 0;
@@ -13882,7 +13881,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static bool SetDragDropPayload(ReadOnlySpan<char> type, IntPtr data, uint sz, ImGuiCond cond)
+        public static bool SetDragDropPayload(ReadOnlySpan<char> type, IntPtr data, nuint sz, ImGuiCond cond)
         {
             byte* native_type;
             int type_byteCount = 0;

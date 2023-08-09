@@ -69,12 +69,12 @@ namespace ImGuiNET
         {
             ImGuiNative.ImFontGlyphRangesBuilder_destroy((ImFontGlyphRangesBuilder*)(NativePtr));
         }
-        public bool GetBit(uint n)
+        public bool GetBit(nuint n)
         {
             byte ret = ImGuiNative.ImFontGlyphRangesBuilder_GetBit((ImFontGlyphRangesBuilder*)(NativePtr), n);
             return ret != 0;
         }
-        public void SetBit(uint n)
+        public void SetBit(nuint n)
         {
             ImGuiNative.ImFontGlyphRangesBuilder_SetBit((ImFontGlyphRangesBuilder*)(NativePtr), n);
         }

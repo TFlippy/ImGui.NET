@@ -34,8 +34,8 @@ namespace CodeGenerator
 			{ "ImTextureID", "IntPtr" },
 			{ "ImGuiID", "uint" },
 			{ "ImDrawIdx", "ushort" },
-			{ "ImDrawListSharedData", "IntPtr" },
-			{ "ImDrawListSharedData*", "IntPtr" },
+			//{ "ImDrawListSharedData", "IntPtr" },
+			//{ "ImDrawListSharedData*", "IntPtr" },
 
 			{ "ImGuiTableColumnIdx", "sbyte" },
 			{ "ImGuiTableDrawChannelIdx", "byte" },
@@ -54,7 +54,8 @@ namespace CodeGenerator
 			{ "ImGuiSizeCallback", "void*" },
 			{ "ImGuiInputTextCallback", "delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int>" },
 
-			{ "size_t", "uint" },
+			//{ "size_t", "uint" },
+			{ "size_t", "nuint" }, // size_t varies by architecture
 			//{ "ImGuiContext*", "IntPtr" },
 			{ "float[2]", "Vector2*" },
 			{ "float[3]", "Vector3*" },
@@ -136,7 +137,8 @@ namespace CodeGenerator
 			"igCalcTextSize",
 			"igInputTextWithHint",
 			"igErrorCheckEndFrameRecover",
-			"igFindBestWindowPosForPopupEx"
+			"igFindBestWindowPosForPopupEx",
+			//"igGetAllocatorFunctions"
 		};
 	}
 }

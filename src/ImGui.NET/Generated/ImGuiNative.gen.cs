@@ -287,7 +287,7 @@ namespace ImGuiNET
         public static extern ImGuiDataTypeInfo* igDataTypeGetInfo(ImGuiDataType data_type);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte igDebugCheckVersionAndDataLayout(byte* version_str, uint sz_io, uint sz_style, uint sz_vec2, uint sz_vec4, uint sz_drawvert, uint sz_drawidx);
+        public static extern byte igDebugCheckVersionAndDataLayout(byte* version_str, nuint sz_io, nuint sz_style, nuint sz_vec2, nuint sz_vec4, nuint sz_drawvert, nuint sz_drawidx);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igDebugDrawItemRect(uint col);
@@ -591,9 +591,9 @@ namespace ImGuiNET
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igGetActiveID();
-        [SuppressGCTransition]
-        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void igGetAllocatorFunctions(void** p_alloc_func, void** p_free_func, void** p_user_data);
+        //[SuppressGCTransition]
+        //[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        //public static extern void igGetAllocatorFunctions(ImGuiMemAllocFunc* p_alloc_func, ImGuiMemFreeFunc* p_free_func, void** p_user_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImDrawList* igGetBackgroundDrawListNil();
@@ -680,7 +680,7 @@ namespace ImGuiNET
         public static extern ImDrawData* igGetDrawData();
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr igGetDrawListSharedData();
+        public static extern ImDrawListSharedData* igGetDrawListSharedData();
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igGetFocusedFocusScope();
@@ -947,7 +947,7 @@ namespace ImGuiNET
         public static extern ulong igImFileGetSize(IntPtr file);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* igImFileLoadToMemory(byte* filename, byte* mode, uint* out_file_size, int padding_bytes);
+        public static extern void* igImFileLoadToMemory(byte* filename, byte* mode, nuint* out_file_size, int padding_bytes);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr igImFileOpen(byte* filename, byte* mode);
@@ -992,16 +992,16 @@ namespace ImGuiNET
         public static extern ImFontBuilderIO* igImFontAtlasGetBuilderForStbTruetype();
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int igImFormatString(byte* buf, uint buf_size, byte* fmt);
+        public static extern int igImFormatString(byte* buf, nuint buf_size, byte* fmt);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImGuiDir igImGetDirQuadrantFromDelta(float dx, float dy);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint igImHashData(void* data, uint data_size, uint seed);
+        public static extern uint igImHashData(void* data, nuint data_size, uint seed);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint igImHashStr(byte* data, uint data_size, uint seed);
+        public static extern uint igImHashStr(byte* data, nuint data_size, uint seed);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern float igImInvLength(Vector2 lhs, float fail_value);
@@ -1061,7 +1061,7 @@ namespace ImGuiNET
         public static extern int igImParseFormatPrecision(byte* format, int default_value);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* igImParseFormatTrimDecorations(byte* format, byte* buf, uint buf_size);
+        public static extern byte* igImParseFormatTrimDecorations(byte* format, byte* buf, nuint buf_size);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern float igImPowFloat(float x, float y);
@@ -1091,7 +1091,7 @@ namespace ImGuiNET
         public static extern byte* igImStrdup(byte* str);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* igImStrdupcpy(byte* dst, uint* p_dst_size, byte* str);
+        public static extern byte* igImStrdupcpy(byte* dst, nuint* p_dst_size, byte* str);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* igImStreolRange(byte* str, byte* str_end);
@@ -1106,10 +1106,10 @@ namespace ImGuiNET
         public static extern int igImStrlenW(ushort* str);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void igImStrncpy(byte* dst, byte* src, uint count);
+        public static extern void igImStrncpy(byte* dst, byte* src, nuint count);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int igImStrnicmp(byte* str1, byte* str2, uint count);
+        public static extern int igImStrnicmp(byte* str1, byte* str2, nuint count);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* igImStrSkipBlank(byte* str);
@@ -1190,16 +1190,16 @@ namespace ImGuiNET
         public static extern byte igInputScalarN(byte* label, ImGuiDataType data_type, void* p_data, int components, void* p_step, void* p_step_fast, byte* format, ImGuiInputTextFlags flags);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte igInputText(byte* label, byte* buf, uint buf_size, ImGuiInputTextFlags flags, delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback, void* user_data);
+        public static extern byte igInputText(byte* label, byte* buf, nuint buf_size, ImGuiInputTextFlags flags, delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback, void* user_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte igInputTextEx(byte* label, byte* hint, byte* buf, int buf_size, Vector2 size_arg, ImGuiInputTextFlags flags, delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback, void* user_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte igInputTextMultiline(byte* label, byte* buf, uint buf_size, Vector2 size, ImGuiInputTextFlags flags, delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback, void* user_data);
+        public static extern byte igInputTextMultiline(byte* label, byte* buf, nuint buf_size, Vector2 size, ImGuiInputTextFlags flags, delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback, void* user_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte igInputTextWithHint(byte* label, byte* hint, byte* buf, uint buf_size, ImGuiInputTextFlags flags, delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback, void* user_data);
+        public static extern byte igInputTextWithHint(byte* label, byte* hint, byte* buf, nuint buf_size, ImGuiInputTextFlags flags, delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int> callback, void* user_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte igInvisibleButton(byte* str_id, Vector2 size, ImGuiButtonFlags flags);
@@ -1367,7 +1367,7 @@ namespace ImGuiNET
         public static extern void igLoadIniSettingsFromDisk(byte* ini_filename);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void igLoadIniSettingsFromMemory(byte* ini_data, uint ini_size);
+        public static extern void igLoadIniSettingsFromMemory(byte* ini_data, nuint ini_size);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igLogBegin(ImGuiLogType type, int auto_open_depth);
@@ -1409,7 +1409,7 @@ namespace ImGuiNET
         public static extern void igMarkItemEdited(uint id);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* igMemAlloc(uint size);
+        public static extern void* igMemAlloc(nuint size);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igMemFree(void* ptr);
@@ -1634,7 +1634,7 @@ namespace ImGuiNET
         public static extern void igSaveIniSettingsToDisk(byte* ini_filename);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte* igSaveIniSettingsToMemory(uint* out_ini_size);
+        public static extern byte* igSaveIniSettingsToMemory(nuint* out_ini_size);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igScaleWindowsInViewport(ImGuiViewportP* viewport, float scale);
@@ -1662,9 +1662,9 @@ namespace ImGuiNET
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetActiveID(uint id, ImGuiWindow* window);
-        [SuppressGCTransition]
-        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void igSetAllocatorFunctions(void* alloc_func, void* free_func, void* user_data);
+        //[SuppressGCTransition]
+        //[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        //public static extern void igSetAllocatorFunctions(ImGuiMemAllocFunc alloc_func, ImGuiMemFreeFunc free_func, void* user_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetClipboardText(byte* text);
@@ -1697,7 +1697,7 @@ namespace ImGuiNET
         public static extern void igSetCursorScreenPos(Vector2 pos);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte igSetDragDropPayload(byte* type, void* data, uint sz, ImGuiCond cond);
+        public static extern byte igSetDragDropPayload(byte* type, void* data, nuint sz, ImGuiCond cond);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetFocusID(uint id, ImGuiWindow* window);
@@ -2444,7 +2444,7 @@ namespace ImGuiNET
         public static extern void ImDrawList_GetClipRectMin(Vector2* pOut, ImDrawList* self);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern ImDrawList* ImDrawList_ImDrawList(IntPtr shared_data);
+        public static extern ImDrawList* ImDrawList_ImDrawList(ImDrawListSharedData* shared_data);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawList_PathArcTo(ImDrawList* self, Vector2 center, float radius, float a_min, float a_max, int num_segments);
@@ -2516,13 +2516,13 @@ namespace ImGuiNET
         public static extern void ImDrawList_PushTextureID(ImDrawList* self, IntPtr texture_id);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImDrawListSharedData_destroy(IntPtr self);
+        public static extern void ImDrawListSharedData_destroy(ImDrawListSharedData* self);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ImDrawListSharedData_ImDrawListSharedData();
+        public static extern ImDrawListSharedData* ImDrawListSharedData_ImDrawListSharedData();
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImDrawListSharedData_SetCircleTessellationMaxError(IntPtr self, float max_error);
+        public static extern void ImDrawListSharedData_SetCircleTessellationMaxError(ImDrawListSharedData* self, float max_error);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawListSplitter_Clear(ImDrawListSplitter* self);
@@ -2732,13 +2732,13 @@ namespace ImGuiNET
         public static extern void ImFontGlyphRangesBuilder_destroy(ImFontGlyphRangesBuilder* self);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ImFontGlyphRangesBuilder_GetBit(ImFontGlyphRangesBuilder* self, uint n);
+        public static extern byte ImFontGlyphRangesBuilder_GetBit(ImFontGlyphRangesBuilder* self, nuint n);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilder_ImFontGlyphRangesBuilder();
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImFontGlyphRangesBuilder_SetBit(ImFontGlyphRangesBuilder* self, uint n);
+        public static extern void ImFontGlyphRangesBuilder_SetBit(ImFontGlyphRangesBuilder* self, nuint n);
         [SuppressGCTransition]
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuiContext_destroy(ImGuiContext* self);

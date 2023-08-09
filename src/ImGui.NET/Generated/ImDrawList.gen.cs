@@ -12,7 +12,7 @@ namespace ImGuiNET
         public ImVector VtxBuffer;
         public ImDrawListFlags Flags;
         public uint _VtxCurrentIdx;
-        public IntPtr _Data;
+        public ImDrawListSharedData* _Data;
         public byte* _OwnerName;
         public ImDrawVert* _VtxWritePtr;
         public ushort* _IdxWritePtr;
@@ -36,7 +36,7 @@ namespace ImGuiNET
         public ImPtrVector<ImDrawVertPtr> VtxBuffer => new ImPtrVector<ImDrawVertPtr>(NativePtr->VtxBuffer, Unsafe.SizeOf<ImDrawVert>());
         public ref ImDrawListFlags Flags => ref Unsafe.AsRef<ImDrawListFlags>(&NativePtr->Flags);
         public ref uint _VtxCurrentIdx => ref Unsafe.AsRef<uint>(&NativePtr->_VtxCurrentIdx);
-        public ref IntPtr _Data => ref Unsafe.AsRef<IntPtr>(&NativePtr->_Data);
+        public ImDrawListSharedDataPtr _Data => new ImDrawListSharedDataPtr(NativePtr->_Data);
         public NullTerminatedString _OwnerName => new NullTerminatedString(NativePtr->_OwnerName);
         public ImDrawVertPtr _VtxWritePtr => new ImDrawVertPtr(NativePtr->_VtxWritePtr);
         public IntPtr _IdxWritePtr { get => (IntPtr)NativePtr->_IdxWritePtr; set => NativePtr->_IdxWritePtr = (ushort*)value; }

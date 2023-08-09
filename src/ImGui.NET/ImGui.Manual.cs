@@ -46,7 +46,7 @@ namespace ImGuiNET
 
 		[SuppressGCTransition]
 		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-		public static extern void igTextEx2(byte* text, byte* text_end, ImGuiTextFlags flags, ImFont* font, float font_size, uint color, uint color_bg, Vector2 offset_bg);
+		public static extern void igTextEx2(byte* text, byte* text_end, ImGuiTextFlags flags, ImFont* font, float font_size, uint color, uint color_bg, Vector2 offset_bg, byte clip);
 
 		[SuppressGCTransition]
 		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -55,6 +55,22 @@ namespace ImGuiNET
 		[SuppressGCTransition]
 		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void ImDrawList_AddLine2(ImDrawList* self, Vector2 p1, Vector2 p2, uint col0, uint col1, float thickness0, float thickness1);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igSelectable2(uint id, byte selected, ImGuiSelectableFlags flags, ImRect* rect, byte* pOut);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igGetLastItemRect(ImRect* pOut);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igGetInt(uint key, int val_default, int* val_out);
+
+		[SuppressGCTransition]
+		[DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void igSetInt(uint key, int val);
 	}
 
 	public static unsafe partial class ImGui
